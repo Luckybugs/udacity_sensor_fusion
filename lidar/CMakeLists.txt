@@ -30,8 +30,8 @@ target_link_libraries (pcl_environment_filtered_segamented_clustered ${PCL_LIBRA
 add_executable (pcl_environment_filtered_segamented_clustered_stream src/pcl_environment_filtered_segamented_clustered_stream.cpp src/render/render.cpp src/processPointClouds.cpp)
 target_link_libraries (pcl_environment_filtered_segamented_clustered_stream ${PCL_LIBRARIES})
 
-#[[add_executable (environment_pcl src/environment_pcl.cpp src/render/render.cpp src/processPointClouds.cpp)
-target_link_libraries (environment_pcl ${PCL_LIBRARIES})
+add_executable (no_pcl_environment_ransac src/no_pcl_environment_ransac.cpp src/render/render.cpp src/no_pcl_processPointClouds_ransac.cpp)
+target_link_libraries (no_pcl_environment_ransac ${PCL_LIBRARIES})
 
-add_executable (environment_no_pcl src/environment_no_pcl.cpp src/render/render.cpp src/processPointClouds_no_pcl.cpp)
-target_link_libraries (environment_no_pcl ${PCL_LIBRARIES})]]
+add_executable (no_pcl_environment_ransac_kdtree src/no_pcl_environment_ransac_kdtree.cpp src/render/render.cpp src/no_pcl_processPointClouds_ransac_kdtree.cpp)
+target_link_libraries (no_pcl_environment_ransac_kdtree ${PCL_LIBRARIES})
