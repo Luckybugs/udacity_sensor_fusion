@@ -18,20 +18,19 @@ list(REMOVE_ITEM PCL_LIBRARIES "vtkproj4")
 add_executable (environment src/environment.cpp src/render/render.cpp src/processPointClouds.cpp)
 target_link_libraries (environment ${PCL_LIBRARIES})
 
-#[[
-add_executable (environment_filtered src/environment_filtered.cpp src/render/render.cpp src/processPointClouds.cpp)
-target_link_libraries (environment_filtered ${PCL_LIBRARIES})
+add_executable (pcl_environment_filtered src/pcl_environment_filtered.cpp src/render/render.cpp src/processPointClouds.cpp)
+target_link_libraries (pcl_environment_filtered ${PCL_LIBRARIES})
 
-add_executable (environment_filtered_segamented src/environment_filtered_segamented.cpp src/render/render.cpp src/processPointClouds.cpp)
-target_link_libraries (environment_filtered_segamented ${PCL_LIBRARIES})
+add_executable (pcl_environment_filtered_segamented src/pcl_environment_filtered_segamented.cpp src/render/render.cpp src/processPointClouds.cpp)
+target_link_libraries (pcl_environment_filtered_segamented ${PCL_LIBRARIES})
 
-add_executable (environment_filtered_segamented_clustered src/environment_filtered_segamented_clustered.cpp src/render/render.cpp src/processPointClouds.cpp)
-target_link_libraries (environment_filtered_segamented_clustered ${PCL_LIBRARIES})
+add_executable (pcl_environment_filtered_segamented_clustered src/pcl_environment_filtered_segamented_clustered.cpp src/render/render.cpp src/processPointClouds.cpp)
+target_link_libraries (pcl_environment_filtered_segamented_clustered ${PCL_LIBRARIES})
 
-add_executable (environment_filtered_segamented_clustered_stream src/environment_filtered_segamented_clustered_stream.cpp src/render/render.cpp src/processPointClouds.cpp)
-target_link_libraries (environment_filtered_segamented_clustered_stream ${PCL_LIBRARIES})
+add_executable (pcl_environment_filtered_segamented_clustered_stream src/pcl_environment_filtered_segamented_clustered_stream.cpp src/render/render.cpp src/processPointClouds.cpp)
+target_link_libraries (pcl_environment_filtered_segamented_clustered_stream ${PCL_LIBRARIES})
 
-add_executable (environment_pcl src/environment_pcl.cpp src/render/render.cpp src/processPointClouds.cpp)
+#[[add_executable (environment_pcl src/environment_pcl.cpp src/render/render.cpp src/processPointClouds.cpp)
 target_link_libraries (environment_pcl ${PCL_LIBRARIES})
 
 add_executable (environment_no_pcl src/environment_no_pcl.cpp src/render/render.cpp src/processPointClouds_no_pcl.cpp)
