@@ -1,7 +1,5 @@
 # Udacity Sensor Fusion Lidar
 
-# Udacity Sensor Fusion Lidar
-
 ## Running
 1. mkdir build
 2. cd build
