@@ -1,3 +1,3 @@
 # Udacity Sensor Fusion
 
-Please check README under sub-folders for running instrucionts. Thanks. 
+Please check README under sub-folders for more details. Thanks.
