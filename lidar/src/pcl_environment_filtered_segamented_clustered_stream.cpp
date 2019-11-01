@@ -71,7 +71,7 @@ void initCamera(CameraAngle setAngle, pcl::visualization::PCLVisualizer::Ptr& vi
 {
     viewer->setBackgroundColor (0, 0, 0);
 
-    // set camera position and angle
+    // set 2d_features position and angle
     viewer->initCameraParameters();
     // distance away in meters
     int distance = 16;

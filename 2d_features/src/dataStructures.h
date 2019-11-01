@@ -7,9 +7,9 @@
 
 struct DataFrame { // represents the available sensor information at the same time instance
     
-    cv::Mat cameraImg; // camera image
+    cv::Mat cameraImg; // 2d_features image
     
-    std::vector<cv::KeyPoint> keypoints; // 2D keypoints within camera image
+    std::vector<cv::KeyPoint> keypoints; // 2D keypoints within 2d_features image
     cv::Mat descriptors; // keypoint descriptors
     std::vector<cv::DMatch> kptMatches; // keypoint matches between previous and current frame
 };
