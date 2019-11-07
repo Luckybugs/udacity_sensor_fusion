@@ -65,13 +65,13 @@ for i=1:length(t)
     
     % *%TODO* :
     %For each time stamp update the Range of the Target for constant velocity. 
-    tau = (R + t(i) * v) / c;  % seconds
+    td(i) = (R + t(i) * v) / c;  % seconds
 
     % *%TODO* :
     %For each time sample we need update the transmitted and
     %received signal. 
     Tx(i) = cos(2 * pi * (fc * t(i) + slope * t(i)^2 / 2));
-    Rx(i) = cos(2 * pi * (fc * (t(i) - tau) + slope * (t(i) - tau)^2 / 2));
+    Rx(i) = cos(2 * pi * (fc * (t(i) - td(i)) + slope * (t(i) - td(i))^2 / 2));
     
     % *%TODO* :
     %Now by mixing the Transmit and Receive generate the beat signal
@@ -109,8 +109,8 @@ subplot(2,1,1)
 
  % *%TODO* :
  % plot FFT output 
-f = Nr / length(one_side_fft) * (0 : (Nr / 2 - 1));
-plot(f, one_side_fft);
+ % f = Nr / length(one_side_fft) * (0 : (Nr / 2 - 1));
+plot(one_side_fft);
 
 axis ([0 200 0 1]);
 
@@ -151,22 +151,22 @@ figure,surf(doppler_axis,range_axis,RDM);
 
 % *%TODO* :
 %Select the number of Training Cells in both the dimensions.
-Tr = 12;  % Training (range dimension)
-Td = 3;  % Training cells (doppler dimension)
+Tr = 12;  
+Td = 3;  
 
 % *%TODO* :
 %Select the number of Guard Cells in both dimensions around the Cell under 
 %test (CUT) for accurate estimation
-Gr = 4;  % Guard cells (range dimension)
-Gd = 1;  % Guard cells (doppler dimension)
+Gr = 4;  
+Gd = 1;  
 
 % *%TODO* :
 % offset the threshold by SNR value in dB
-offset = 15;
+offset = 10;
 
 % *%TODO* :
 %Create a vector to store noise_level for each iteration on training cells
-noise_level = zeros(1,1);
+noise_level = zeros(Nr/2-2*(Td+Gd),Nd-2*(Tr+Gr));
 
 
 % *%TODO* :
@@ -197,21 +197,21 @@ CFAR = zeros(size(RDM));
 % Use RDM[x,y] from the output of 2D FFT above for implementing CFAR
 for range_index = Tr + Gr + 1 : Nr/2 - Tr - Gr
     for doppler_index = Td + Gd + 1 : Nd - Td - Gd
-        % Slice the entire window
+
         training = RDM(range_index - Tr - Gr : range_index + Tr + Gr, ...
                        doppler_index - Td - Gd : doppler_index + Td + Gd);
-        % Set all non-training cells to zero
+
         training(range_index - Gr : range_index + Gr, ...
                  doppler_index - Gd : doppler_index + Gd) = 0;
-        % Convert decibel measurements to power
+
         training = db2pow(training);
-        % Calculate the training mean
-        training = sum(training) / N_training;
-        % Revert average power to decibels
+
+        training = sum(sum(training)) / N_training;
+
         training = pow2db(training);
-        % Use the offset to determine the SNR threshold
+
         threshold = training + offset;
-        % Apply the threshold to the CUT
+
         if RDM(range_index, doppler_index) > threshold
             CFAR(range_index, doppler_index) = 1;
         end
