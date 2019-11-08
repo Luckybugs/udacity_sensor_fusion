@@ -27,4 +27,4 @@ cells used.
 6. Compare the signal under CUT with this threshold. If the CUT level > threshold assign it a value of 1, else equate it to 0.
 
 ## Further improvement
-The value for offset is based on trial and error. Will need to investigate more for how to do it more efficiently. 
+The value for offset is based on trial and error. Will need to investigate more for how to do it more efficiently. For the second summision, I changed the offset from 10 to 15 coz the CFAR is not working, but curiously, the first time it did work. 
