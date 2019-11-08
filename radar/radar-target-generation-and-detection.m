@@ -162,7 +162,7 @@ Gd = 1;
 
 % *%TODO* :
 % offset the threshold by SNR value in dB
-offset = 10;
+offset = 15;
 
 % *%TODO* :
 %Create a vector to store noise_level for each iteration on training cells
