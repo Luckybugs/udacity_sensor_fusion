@@ -65,7 +65,7 @@ for i=1:length(t)
     
     % *%TODO* :
     %For each time stamp update the Range of the Target for constant velocity. 
-    td(i) = (R + t(i) * v) / c;  % seconds
+    td(i) = (R + t(i) * v) * 2 / c;  % seconds
 
     % *%TODO* :
     %For each time sample we need update the transmitted and
