@@ -146,18 +146,16 @@ void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint
 void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPoint> &kptsCurr,
                       std::vector<cv::DMatch> kptMatches, double frameRate, double &TTC, cv::Mat *visImg)
 {
-    // The code below is adapted from an example exercise developed earlier in this Udacity course:
-    // "Camera Unit > Lesson 3: Engineering a Collision Detection System > Estimating TTC with a camera"
 
-    // Compute distance ratios on every pair of keypoints, O(n^2) on the number of matches contained within the ROI
+    // Compute distance ratios on every pair of keypoints.
     vector<double> distRatios;
     for (auto it1 = kptMatches.begin(); it1 != kptMatches.end() - 1; ++it1) {
-        cv::KeyPoint kpOuterCurr = kptsCurr.at(it1->trainIdx);  // kptsCurr is indexed by trainIdx, see NOTE in matchBoundinBoxes
-        cv::KeyPoint kpOuterPrev = kptsPrev.at(it1->queryIdx);  // kptsPrev is indexed by queryIdx, see NOTE in matchBoundinBoxes
+        cv::KeyPoint kpOuterCurr = kptsCurr.at(it1->trainIdx);  // kptsCurr is indexed by trainIdx
+        cv::KeyPoint kpOuterPrev = kptsPrev.at(it1->queryIdx);  // kptsPrev is indexed by queryIdx
 
         for (auto it2 = kptMatches.begin() + 1; it2 != kptMatches.end(); ++it2) {
-            cv::KeyPoint kpInnerCurr = kptsCurr.at(it2->trainIdx);  // kptsCurr is indexed by trainIdx, see NOTE in matchBoundinBoxes
-            cv::KeyPoint kpInnerPrev = kptsPrev.at(it2->queryIdx);  // kptsPrev is indexed by queryIdx, see NOTE in matchBoundinBoxes
+            cv::KeyPoint kpInnerCurr = kptsCurr.at(it2->trainIdx);  // kptsCurr is indexed by trainIdx
+            cv::KeyPoint kpInnerPrev = kptsPrev.at(it2->queryIdx);  // kptsPrev is indexed by queryIdx
 
             // Use cv::norm to calculate the current and previous Euclidean distances between each keypoint in the pair
             double distCurr = cv::norm(kpOuterCurr.pt - kpInnerCurr.pt);
@@ -215,8 +213,7 @@ void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
     // where: d0 is the previous frame's closing distance (front-to-rear bumper)
     //        d1 is the current frame's closing distance (front-to-rear bumper)
     //        delta_t is the time elapsed between images (1 / frameRate)
-    // Note: this function does not take into account the distance from the lidar origin to the front bumper of our vehicle.
-    // It also does not account for the curvature or protrusions from the rear bumper of the preceding vehicle.
+
     TTC = d1 * (1.0 / frameRate) / (d0 - d1);
 }
 
