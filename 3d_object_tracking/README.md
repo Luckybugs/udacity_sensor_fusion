@@ -1,7 +1,13 @@
 # Udacity Sensor Fusion Camera
 
 ## Dependencies
-1. OpenCV4.1: sh installOpenCV-4-on-Ubuntu-16-04.sh 
+1. OpenCV4.1: sh installOpenCV-4-on-Ubuntu-16-04.sh
+2. YoloV3 weights: !wget "https://pjreddie.com/media/files/yolov3.weights" if following error message shows:
+
+"terminate called after throwing an instance of 'cv::Exception'
+  what():  OpenCV(4.1.2-dev) darknet/darknet_io.cpp:711: error: (-213:The function/feature is not implemented) Transpose the weights (except for convolutional) is not implemented in function 'ReadDarknetFromWeightsStream'
+Aborted (core dumped)"
+
 
 ## Running
 1. mkdir build
@@ -25,4 +31,10 @@ In camFusion_Student.cpp, **computeTTCCamera** uses distance ratios on keypoints
 
 TTC = (-1.0 / frameRate) / (1 - medianDistRatio);
 
-Like the lidar TTC estimation, this function uses the median distance ratio to avoid the impact of outliers. 
+Like the lidar TTC estimation, this function uses the median distance ratio to avoid outliers. 
+
+### FP.5 Performance evaluation, lidar outliers
+Taking the median point has avoided the outliers. 
+
+### FP.6 Performance evaluation, detector/descriptor combinations
+As results/fp6.csv shows, FAST detector with BRIEF, SIFT, and AKAZE are recommended. SIFT is quite tricky to install on Linux. again I attached a installation script.
