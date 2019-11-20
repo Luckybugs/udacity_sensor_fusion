@@ -36,5 +36,5 @@ cmake-build-debug/
 
 lidar/build/
 radar/build/
-3d_tracking/dat/yolo/
+3d_tracking/build/
 *.weights
