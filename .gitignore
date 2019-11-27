@@ -42,3 +42,4 @@ radar/build
 *.weights
 *.bin
 *.png
+*.pcd
