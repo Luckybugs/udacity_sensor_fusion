@@ -1,4 +1,4 @@
-# Udacity Sensor Fusion Camera
+# Udacity Sensor Fusion 3d tracking
 
 ## Dependencies
 1. OpenCV4.1: sh installOpenCV-4-on-Ubuntu-16-04.sh
