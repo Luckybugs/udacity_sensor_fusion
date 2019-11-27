@@ -17,6 +17,11 @@ class UKF {
   virtual ~UKF();
 
   /**
+   * InitializeUKF initializes the UKF instance
+   */
+  void InitializeUKF(MeasurementPackage meas_package);
+
+  /**
    * ProcessMeasurement
    * @param meas_package The latest measurement data of either radar or laser
    */
@@ -92,6 +97,9 @@ class UKF {
 
   // Augmented state dimension
   int n_aug_;
+
+  // Number of sigma points
+  int n_sig_;
 
   // Sigma point spreading parameter
   double lambda_;
