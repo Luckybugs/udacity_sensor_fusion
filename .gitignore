@@ -34,9 +34,11 @@
 build/
 cmake-build-debug/
 
-lidar/build/
-radar/build/
-3d_object_tracking/build/
-3d_object_tracking/images/
-3d_object_tracking/dat/
+lidar/build
+radar/build
+3d_object_tracking/build
+3d_object_tracking/images
+3d_object_tracking/dat
 *.weights
+*.bin
+*.png
